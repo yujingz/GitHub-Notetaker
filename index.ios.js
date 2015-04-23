@@ -21,7 +21,7 @@ class githubNotetaker extends React.Component{
       <NavigatorIOS
         style={styles.container}
         initialRoute={{
-          title: 'GitHub Notetaker',
+          title: 'GitHub Notetaker1',
           component: Main,
         }}
       />
