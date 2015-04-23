@@ -37,7 +37,11 @@ class Dashboard extends React.Component{
   }
 
   goToRepos() {
-    console.log('Repos')
+    this.props.navigator.push({
+      title: 'Profile Page',
+      component: Profile,
+      passProps: { userInfo: this.props.userInfo }
+    });
   }
 
   goToNotes() {
