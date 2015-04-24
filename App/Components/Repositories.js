@@ -1,6 +1,7 @@
 var React = require('react-native');
-var Badge = require('./Badge')
-var Separator = require('./Helpers/Separator')
+var Badge = require('./Badge');
+var Separator = require('./Helpers/Separator');
+var MyWebView = require('./Helpers/MyWebView');
 
 var {
   View,
@@ -12,7 +13,11 @@ var {
 
 class Repositories extends React.Component{
   openPage(url) {
-    console.log('the url is', url)
+    this.props.navigator.push({
+      component: MyWebView,
+      title: 'Web View',
+      passProps: {url}
+    })
   }
 
   render() {
