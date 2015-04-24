@@ -29,6 +29,7 @@ class Repositories extends React.Component{
             </TouchableHighlight>
             <Text style={styles.stars}> Stars: {repos[index].stargazers_count} </Text>
             {desc}
+            <Separator />
           </View>
         </View>
       )
