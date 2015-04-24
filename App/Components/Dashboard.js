@@ -1,6 +1,7 @@
 var React = require('react-native');
 var Profile = require('./Profile');
 var Repositories = require('./Repositories')
+var Notes = require('./Notes')
 var api = require('../Utils/api');
 
 var {
@@ -52,7 +53,18 @@ class Dashboard extends React.Component{
   }
 
   goToNotes() {
-    console.log('Notes')
+    api.getNotes(this.props.userInfo.login)
+    .then((jsonRes) => {
+      jsonRes = jsonRes || {};
+      this.props.navigator.push({
+        component: Notes,
+        title: 'Notes',
+        passProps: {
+          notes: jsonRes,
+          userInfo: this.props.userInfo
+        }
+      });
+    });
   }
 
   render() {
@@ -63,21 +75,21 @@ class Dashboard extends React.Component{
           style={this.makeBackground(0)}
           onPress={this.goToProfile.bind(this)}
           underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}> View Profile </Text>
+          <Text style={styles.buttonText}> View Profile </Text>
         </TouchableHighlight>
 
         <TouchableHighlight
           style={this.makeBackground(1)}
           onPress={this.goToRepos.bind(this)}
           underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}> View Repos </Text>
+          <Text style={styles.buttonText}> View Repos </Text>
         </TouchableHighlight>
 
         <TouchableHighlight
           style={this.makeBackground(2)}
           onPress={this.goToNotes.bind(this)}
           underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}> View Notes </Text>
+          <Text style={styles.buttonText}> View Notes </Text>
         </TouchableHighlight>
       </View>
     )
